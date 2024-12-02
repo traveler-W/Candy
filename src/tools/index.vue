@@ -14,7 +14,7 @@ function but_click() {
     display.value = true
 
   } else {
-    window.location.href = "https://traveler-w.github.io/Candy/#/title"
+    window.location.href = "#/title"
   }
   setTimeout(set_display, 4000)
 }
@@ -133,6 +133,7 @@ button:active {
   position: absolute;
   font-size: 50px;
   font-family: "楷体";
+  text-align: center;
   width: 500px;
   height: 100px;
   opacity: 0.9;
