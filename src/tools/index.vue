@@ -14,7 +14,7 @@ function but_click() {
     display.value = true
 
   } else {
-    window.location.href = "/#/title"
+    window.location.href = "Candy/#/title"
   }
   setTimeout(set_display, 4000)
 }
