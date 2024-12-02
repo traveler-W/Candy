@@ -14,7 +14,7 @@ function but_click() {
     display.value = true
 
   } else {
-    window.location.href = "Candy/#/title"
+    window.location.href = "https://traveler-w.github.io/Candy/#/title"
   }
   setTimeout(set_display, 4000)
 }
