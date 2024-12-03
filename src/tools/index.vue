@@ -1,22 +1,21 @@
 <script setup>
 import { ref } from 'vue';
-const input_msg = ref("")
+import bus from './mitt'
+let input_msg = ref("")
 const display = ref(false)
-const display_msg = ref("输入错误,请重新输入！")
+const display_msg = ref("")
 const is_audio = ref(false)
 
 function set_display() {
   display.value = false
+  window.location.href = "https://traveler-w.github.io/Candy/#/title"
 }
 
-function but_click() {
-  if (input_msg.value != "不吃糖") {
-    display.value = true
-
-  } else {
-    window.location.href = "#/title"
-  }
-  setTimeout(set_display, 4000)
+function but_click() { 
+  display_msg.value = input_msg.value
+  display.value = true
+  bus.emit('val',input_msg.value)
+  setTimeout(set_display, 3500)
 }
 function play_music() {
   let close = document.getElementById("v")
@@ -36,9 +35,9 @@ function play_music() {
       <source src="../images/dog.mp4">
       <embed src="../images/output.mp3" type="audio/mp3">
     </video>
-    <div class="display" v-if="display">{{ display_msg }}</div>
+    <div class="display" v-if="display">{{ display_msg }}，很好听的昵称</div>
     <div class="title">
-      <span class="nick">请输入你的名字</span>
+      <span class="nick">请输入你的昵称</span>
       <input class="get_answer" type="text" v-model="input_msg">
       <button class="but" @click="but_click">确定</button>
       <button class="music" @click="play_music"><img src="../images/music.png" width="40px" height="40px"></button>

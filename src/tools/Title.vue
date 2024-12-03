@@ -1,20 +1,24 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
+import bus from './mitt'
 const is_vedio = ref(0)
 const is_ending = ref(false)
-const is_no =ref(true)
-const end_str =ref("")
+const is_no = ref(true)
+const end_str = ref("")
 
-function end_fun_ok()
-{
-    is_ending.value=true
-    end_str.value="太好了，我们现在就是朋友了，你现在可以加我了或者让我加你，这是我的微信号“wang2477428674”"
- 
+const name = ref(''); // 创建响应式引用
+function set_name(e) {
+    name.value = e; // 修改响应式引用的值
+    console.log("值为:"+name.value)
 }
-function end_fun_no()
-{
-    is_ending.value=true
-    end_str.value="我尊重你的选择，不过我还是想跟你成为盆友的，我会继续关注你的。"
+function end_fun_ok() {
+    is_ending.value = true
+    end_str.value = "太好了，我们现在就是朋友了，你现在可以加我了或者让我加你，这是我的微信号“wang2477428674”"
+
+}
+function end_fun_no() {
+    is_ending.value = true
+    end_str.value = "我尊重你的选择，不过我还是想跟你成为盆友的，我会继续关注你的。"
 }
 
 function letter_click() {
@@ -23,13 +27,14 @@ function letter_click() {
 function vedio_click() {
     is_vedio.value = 2
 }
+bus.on('val', set_name);
 </script>
 <template>
     <div class="bg">
         <div class="output_box">
             <div class="letter" v-if="is_vedio == 1">
                 <p style="font-size: 50px; text-align: center;">这是一封独特的信</p>
-                <p>亲爱啊的不吃糖小姐，你好:</p>
+                <p >亲爱的{{name}}小姐，你好:</p>
                 <p style="text-indent: 60px;">我知道这样突然的地方式很冒昧，也很唐突，但请你理解我的做法。这可以是一个大胆且勇敢的做法，也可以是一个有趣的互动。容我在此先介绍一下我自己，我是
                     来自21级计算机学院的一位同学，你暂且可以叫我小王。我第一次在食堂见过你，觉得很是欣赏，但是后来却没有什么机会见到了。上个月我在刷抖音的时候，刷到了你，所以果断关注了。我看了你
                     的所有作品感觉很不错，真的很喜欢。经过后续对你的关注产生了想法，就是写一个网站，这个网站是我专门为你写的(在公司顶着被抓的时候写的)，我想通过这个网站能不能得到你的一个好友位。
@@ -50,12 +55,12 @@ function vedio_click() {
         </div>
         <div class="vedio_box">
             <div class="ending" v-if="is_ending">
-                {{end_str}}
+                {{ end_str }}
             </div>
-            <button class="is"  @click="end_fun_ok">
+            <button class="is" @click="end_fun_ok">
                 接受
             </button>
-            <button class="no"  @click="end_fun_no">
+            <button class="no" @click="end_fun_no">
                 拒绝
             </button>
         </div>
@@ -75,7 +80,8 @@ function vedio_click() {
     padding: 0;
     margin: 0;
 }
-.ending{
+
+.ending {
     z-index: 3;
     position: absolute;
     width: 410px;
@@ -90,7 +96,8 @@ function vedio_click() {
     box-shadow: 5px 5px 5px black;
     background-color: rgb(197, 190, 204);
 }
-.is{
+
+.is {
     z-index: 1;
     position: absolute;
     width: 150px;
@@ -104,7 +111,8 @@ function vedio_click() {
     box-shadow: 5px 5px 5px black;
     background-color: rgb(197, 190, 204);
 }
-.no{
+
+.no {
     z-index: 2;
     position: absolute;
     width: 150px;
@@ -118,20 +126,23 @@ function vedio_click() {
     box-shadow: 5px 5px 5px black;
     background-color: rgb(197, 190, 204);
 }
+
 .is:hover {
-  background-color: rgb(151, 230, 164);
+    background-color: rgb(151, 230, 164);
 }
 
 .is:active {
-  background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
 }
+
 .no:hover {
-  background-color: rgb(212, 62, 119);
+    background-color: rgb(212, 62, 119);
 }
 
 .no:active {
-  background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
 }
+
 template {
     position: relative;
 }
@@ -187,7 +198,7 @@ template {
     width: 455px;
     height: 300px;
     border-radius: 20px;
-    background-color:rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     top: 20px;
     left: 1440px;
     border: 2px solid rgb(130, 229, 143);
@@ -204,20 +215,23 @@ template {
     box-shadow: 5px 5px 5px black;
     background-color: rgb(197, 190, 204);
 }
-.im{
+
+.im {
     position: absolute;
     width: 470px;
     height: 415px;
     left: -30px;
     top: -78px;
 }
-.imv{
+
+.imv {
     position: absolute;
     width: 480px;
     height: 310px;
     left: -36px;
     top: -25px;
 }
+
 .vedio_but {
     position: absolute;
     left: 20px;
@@ -236,7 +250,7 @@ template {
     height: 600px;
     border-radius: 20px;
     background-color: white;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     top: 330px;
     left: 1440px;
     border: 2px solid rgb(130, 229, 143);
