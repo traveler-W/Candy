@@ -47,7 +47,7 @@ bus.on('val', set_name);
             </div>
             <video class="vedio" id="v" v-else-if="is_vedio == 2" autoplay preload
                 style="width: 1360px; height: 870px; object-fit: cover">
-                <source src="../images/xiaoyu.mov">
+                <source src="../images/xiaoyu.mp4">
             </video>
             <div v-else="is_vedio==0" style="text-align: center;font-size: 100px;font-family: 楷体;margin-top: 300px;">
                 请先点击信封查看信件

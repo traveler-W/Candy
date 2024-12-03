@@ -8,7 +8,7 @@ const is_audio = ref(false)
 
 function set_display() {
   display.value = false
-  window.location.href = "https://traveler-w.github.io/Candy/#/title"
+  window.location.href = "#/title"
 }
 
 function but_click() { 
