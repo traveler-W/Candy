@@ -13,7 +13,7 @@ function set_name(e) {
 }
 function end_fun_ok() {
     is_ending.value = true
-    end_str.value = "太好了，我们现在就是朋友了，你现在可以加我了或者让我加你，这是我的微信号“wang2477428674”"
+    end_str.value = "太好了，我们现在就是朋友了，你现在可以加我了或者让我加你，这是我的微信号“wang2477438674”"
 
 }
 function end_fun_no() {
